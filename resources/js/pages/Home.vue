@@ -1,19 +1,32 @@
+
+<script setup>
+  import MainPageBannerComponent from '../components/homePage/MainPageBannerComponent';
+  import MainPageNewsComponent from '../components/homePage/MainPageNewsComponent';
+</script>
+
 <template>
-    <div>
-        Homepage
-    </div>
+  <main-page-banner-component></main-page-banner-component>
+  <main-page-news-component></main-page-news-component>
+   
 </template>
 
 <script>
+ 
+
 export default {
-    name: "Home",
-    data() {
+    name: "Home"
+   /* data() {
         return {
-            //
-        }
+          data: null
+        };
     },
-    created() {
-    },
-    methods: {}
+    
+    mounted() {
+        axios.get('/api/banners')
+            .then(response => (
+                this.data = response.data.data
+            ));
+                
+    }*/
 }
 </script>

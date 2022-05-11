@@ -5,6 +5,7 @@
  */
 
  import {createApp} from 'vue'
+ //const axios = require('axios').default;
 
  require('./bootstrap')
  import App from './App.vue'
