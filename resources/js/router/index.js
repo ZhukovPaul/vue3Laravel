@@ -3,6 +3,7 @@ import {createWebHistory, createRouter} from "vue-router";
 
  
 import Home from '../pages/Home';
+import News from '../pages/News';
 import NewsDetail from '../pages/news/NewsDetail';
 import About from '../pages/About';
 import Dashboard from '../pages/Dashboard';
@@ -14,6 +15,10 @@ export const routes = [
         component: Home
     },
     {
+        name: 'news',
+        path: '/news',
+        component: News
+    }, {
         name: 'newsDetail',
         path: '/news/:slug',
         component: NewsDetail

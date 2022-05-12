@@ -13,8 +13,8 @@
         News haven't been added yet
       </div>
     </div>
-    <div v-else>
-      <div  v-for="news in data" class="col-md-6">
+    
+      <div v-else  v-for="news in data" class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">{{news.themes.title}}</strong>
@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  </div>
+    <button @click="random">Randomize </button>
 
 </template>
 
@@ -47,11 +47,39 @@ export default{
         }
     },
     beforeCreate() {
+         
+        
         axios.get("/api/news")
         .then(response => {
           this.data = response.data.data ;
           this.count = response.data.data.length;
           });
-    } 
+    },
+    methods: {
+        random(){
+            this.shuffle(this.data);
+        },
+        shuffle(array) {
+          let currentIndex = array.length,  randomIndex;
+
+          // While there remain elements to shuffle.
+          while (currentIndex != 0) {
+          
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+              array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+        }
+    },
+    created() {
+          
+        //this.data = shuffle(this.data);
+    }, 
 }
 </script>
