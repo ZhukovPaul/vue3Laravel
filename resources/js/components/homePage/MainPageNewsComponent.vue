@@ -1,8 +1,7 @@
 <template>
   
 <div class="row mb-2">
-   
- 
+    
     <div v-if="!data" class="col-md-12 " >
         <div class="text-center">
           <img src="/img/ZKZg.gif" style="width:50px" class="mt-5">
@@ -13,8 +12,8 @@
         News haven't been added yet
       </div>
     </div>
-    <div v-else>
-      <div  v-for="news in data" class="col-md-6">
+
+    <div  v-else v-for="news in data" class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">{{news.themes.title}}</strong>
@@ -32,7 +31,7 @@
       </div>
     </div>
   </div>
-  </div>
+ 
 
 </template>
 
