@@ -10,8 +10,8 @@
         </div>
     </div>
 
-   <main class="container">
-    <router-view/>
+    <main class="container">
+        <router-view/>
     </main>
     
 </template>
@@ -19,16 +19,12 @@
 <script>
 export default {
     name: "App",
-    data() {
-        return {
-            count : "true"
-        }
-    },
+     /*
     created() {
      
     },
     methods: {
         
-    },
+    },*/
 }
 </script>
