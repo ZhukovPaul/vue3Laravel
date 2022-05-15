@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\NewsResource;
+use App\Http\Resources\NewsResourceCollection;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class ApiNewsController extends Controller
      */
     public function index()
     {
-        return NewsResource::collection(News::all());
+        return new NewsResourceCollection(News::paginate(3));
+        //return NewsResource::collection(News::all());
     }
 
     /**
