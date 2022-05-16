@@ -14,10 +14,11 @@ class ApiNewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
-        return new NewsResourceCollection(News::paginate(3));
-        //return NewsResource::collection(News::all());
+         
+        return new NewsResourceCollection(News::paginate());
+ 
     }
 
     /**

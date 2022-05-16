@@ -50,16 +50,17 @@ export default{
         }
     },
     beforeCreate() {
-         
-        
         axios.get("/api/news")
-        .then(response => {
-          this.data = response.data.data ;
-          this.count = response.data.data.length;
-          });
+        .then(response => ( this.data = response.data.data ));
+    },
+    computed : {
+        count(){
+          return this.data.length;
+        }
     },
     methods: {
         random(){
+         // this.data = this.shuffle(this.all).slice(0,2)
             this.shuffle(this.data);
         },
         shuffle(array) {
