@@ -1,19 +1,7 @@
 <template>
-    
-    <div class="row mb-2">
-        <div v-if="!data" class="col-md-12 " >
-            <div class="text-center">
-              <img src="/img/ZKZg.gif" style="width:50px" class="mt-5">
-            </div>
-        </div>
-        
-        <div v-else-if="count == 0">
-         <div class="text-center">
-            News haven't been added yet
-          </div>
-        </div>
- 
-    <div v-else  v-for="news in data" class="col-md-6">
+  
+    <div class="row mb-2">  
+    <div v-if="data"  v-for="news in data" class="col-md-6">
           <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
               <strong class="d-inline-block mb-2 text-primary">{{news.themes.title}}</strong>
@@ -27,34 +15,36 @@
         </div>
       </div>
     </div>
- <div v-for="(item, index) in links">
-     <router-link v-bind:to="item" class=" fw-bold">{{index}}</router-link>
- </div>
-  </div>
-
+    </div>
+ <nav v-if="links" aria-label="Page navigation example">
+      <ul class="pagination">
+        <li v-for="n in links.last_page" :key="n" ><a class="page-link" @click="getItems(n)">{{n}}</a></li>
+      </ul>
+    </nav>
 </template>
 <script>
-
 export default {
     news:"NewsList",
     data(){
-        return {
-            data : null,
-            links : null
-        }
-    },
-    computed : {
-        count(){
-          return this.data.length;
-        }
+      return {
+        data : null,
+        links: null
+      }
     },
     beforeCreate() {
         axios.get("/api/news")
         .then(response => {
-            console.log(response.data);
-            this.data = response.data.data;
-            this.links = response.data.links;
-            });
+            this.data = response.data.data
+            this.links = response.data.meta;
+          });
     },
+    methods:{
+        getItems(page) {
+          axios.get( this.links.links[page].url )
+            .then(response => {
+              this.data = response.data.data
+            });
+        }
+    }
 }
 </script>
