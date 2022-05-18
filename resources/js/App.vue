@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="container">
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-start">
@@ -13,10 +14,10 @@
     <main class="container">
         <router-view/>
     </main>
-    <footer class="container">
+    <div class="container">
          footer merg
-    </footer>
-    
+    </div>
+    </div>
 </template>
 
 <script>
