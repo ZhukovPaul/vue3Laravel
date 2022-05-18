@@ -15,7 +15,7 @@
         <router-view/>
     </main>
     <div class="container">
-         footer merg
+         footer merg work flow Real 
     </div>
     </div>
 </template>
