@@ -14,7 +14,7 @@
         <router-view/>
     </main>
     <footer class="container">
-        footer test
+        footer merge
 
     </footer>
 </template>
