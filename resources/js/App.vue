@@ -14,11 +14,9 @@
         <router-view/>
     </main>
     <footer class="container">
- 
-        footer merged
-
-
+         footer merg
     </footer>
+    
 </template>
 
 <script>
