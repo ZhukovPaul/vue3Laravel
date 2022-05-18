@@ -14,7 +14,7 @@
         <router-view/>
     </main>
     <footer class="container">
-        footer
+        footer main
 
     </footer>
 </template>
