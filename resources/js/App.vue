@@ -13,7 +13,10 @@
     <main class="container">
         <router-view/>
     </main>
-    
+    <footer class="container">
+        footer
+
+    </footer>
 </template>
 
 <script>
