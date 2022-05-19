@@ -17,7 +17,7 @@ class ApiNewsController extends Controller
     public function index() 
     {
          
-        return new NewsResourceCollection(News::paginate());
+        return new NewsResourceCollection(News::paginate(8));
  
     }
 
