@@ -5,17 +5,42 @@
  */
 
  import {createApp} from 'vue'
- //const axios = require('axios').default;
+ import { createStore } from 'vuex'
 
  require('./bootstrap')
  import App from './App.vue'
  import axios from 'axios'
  import router from './router'
  
+
+
+const store = createStore({
+  state () {
+    return {
+      count: 0,
+      user:"Paul",
+      news : 0 
+    }
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
+
+
+
  const app = createApp(App)
  app.config.globalProperties.$axios = axios;
+ 
  app.use(router)
- var vm = app.mount('#app')
+ app.use(store);
+
+ var vm = app.mount('#app');
+
+ store.commit('increment'); 
+ console.log(store.state.count) 
 
  
 

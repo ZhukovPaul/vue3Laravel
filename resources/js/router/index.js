@@ -3,7 +3,7 @@ import {createWebHistory, createRouter} from "vue-router";
 
  
 import Home from '../pages/Home';
-import News from '../pages/News';
+//import News from '../pages/News';
 import NewsDetail from '../pages/news/NewsDetail';
 import NewsList from '../pages/news/NewsList';
 import About from '../pages/About';
