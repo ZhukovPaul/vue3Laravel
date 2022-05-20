@@ -18,7 +18,7 @@
     </div>
  <nav v-if="links" aria-label="Page navigation example">
       <ul class="pagination">
-        <li v-for="(item, index) in links.links" :key="index"  class="page-item"  :class="{active:item.active}" ><a class="page-link" @click="getItems(index)">{{item.label}}</a></li>
+        <li v-for="(item, index) in links.links" :key="index"  class="page-item"  :class="{active:item.active}" ><a class="page-link" @click="getItems(index)" v-html="item.label">-</a></li>
       </ul>
     </nav>
 </template>
