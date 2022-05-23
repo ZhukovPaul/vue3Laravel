@@ -12,22 +12,18 @@
  import axios from 'axios'
  import router from './router'
  
-
+ import 'bootstrap';
 
 const store = createStore({
   state () {
     return {
-      count: 0,
+       
       user:"Paul",
       news : 0 
     }
   },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
+   
+});
 
 
 
@@ -39,8 +35,8 @@ const store = createStore({
 
  var vm = app.mount('#app');
 
- store.commit('increment'); 
- console.log(store.state.count) 
+// store.commit('increment'); 
+// console.log(store.state.count) 
 
  
 

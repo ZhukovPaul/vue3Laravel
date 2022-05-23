@@ -1,5 +1,5 @@
 <template>
-  
+  <div>
     <div class="row mb-2">  
     <div v-if="data"  v-for="news in data" class="col-md-6">
           <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -16,11 +16,12 @@
       </div>
     </div>
     </div>
- <nav v-if="links" aria-label="Page navigation example">
+    <nav v-if="links" >
       <ul class="pagination">
-        <li v-for="(item, index) in links.links" :key="index"  class="page-item"  :class="{active:item.active}" ><a class="page-link" @click="getItems(index)" v-html="item.label">-</a></li>
+        <li v-for="(item, index) in links.links" :key="index"  class="page-item"  :class="{active:item.active}" ><a class="page-link" @click="getItems(index)" v-html="item.label"></a></li>
       </ul>
     </nav>
+  </div>
 </template>
 <script>
 export default {

@@ -51,7 +51,10 @@ export default{
     },
     beforeCreate() {
         axios.get("/api/news")
-        .then(response => ( this.data = response.data.data ));
+        .then(response => {
+          this.data = response.data.data;
+          this.count = this.data.length;
+       });
     },
     computed : {
         count(){

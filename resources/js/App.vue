@@ -1,21 +1,28 @@
+<script setup>
+  import PopupFormComponent from './components/forms/PopupFormComponent';
+</script>
+
 <template>
     <div>
-    <div class="container">
-        <div class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex justify-content-start">
-                <router-link to="/" class="p-2 link-secondary">Home</router-link>
-                <router-link to="/about" class="p-2 link-secondary">About</router-link>
-                <router-link to="/news" class="p-2 link-secondary">News</router-link>
-                <router-link to="/dashboard" class="p-2 link-secondary">Dashboard</router-link>
-            </nav> 
+        <popup-form-component></popup-form-component>
+
+        <div class="container">
+            <div class="nav-scroller py-1 mb-2">
+                <nav class="nav d-flex justify-content-start">
+                    <router-link to="/" class="p-2 link-secondary">Home</router-link>
+                    <router-link to="/about" class="p-2 link-secondary">About</router-link>
+                    <router-link to="/news" class="p-2 link-secondary">News</router-link>
+                    <router-link to="/dashboard" class="p-2 link-secondary">Dashboard</router-link>
+                </nav> 
+            </div>
         </div>
-    </div>
 
     <main class="container">
         <router-view/>
     </main>
+    
     <div class="container">
- 
+
          footer 
  
     </div>
