@@ -20,14 +20,14 @@ export default{
       this.$store.commit('increment');
     } ,
     computed :  {
-      user(){
-        return this.$store.state.user;
+      count(){
+        return this.$store.state.count;
       }
     },
     created(){
-      console.log( this.user );
-      console.log( this.$store.state );
-      console.log( this.$route.params );
+      console.log( this.count );
+      console.log( this.$store.state.user );
+
     }
 }
 </script>

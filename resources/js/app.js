@@ -19,9 +19,14 @@ const store = createStore({
     return {
        
       user:"Paul",
-      news : 0 
+      count : 0 
     }
   },
+  mutations: {
+    increment (state) {
+      state.count++; 
+    }
+  }
    
 });
 
@@ -35,8 +40,8 @@ const store = createStore({
 
  var vm = app.mount('#app');
 
-// store.commit('increment'); 
-// console.log(store.state.count) 
+ store.commit('increment'); 
+ console.log(store.state.count) 
 
  
 
