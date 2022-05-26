@@ -14,7 +14,11 @@ class WebFormController extends Controller
      */
     public function index()
     {
-        //
+        $newForm =  WebForm::create([
+            "email"=> "email",
+            "phone"=> "phone",
+            "description"=> "describe",
+        ]);
     }
 
     /**
@@ -25,7 +29,18 @@ class WebFormController extends Controller
      */
     public function store(Request $request)
     {
+        $result = $request->only(["email","phone","describe"]);
+        
+        $newForm =  WebForm::create([
+            "email"=> $result["email"],
+            "phone"=> $result["phone"],
+            "description"=> $result["describe"],
+        ]);
+        if($newForm->id>0)
+            return true;
         //
+        //dd( $request );
+        return $request->toArray();
     }
 
     /**
