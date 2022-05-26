@@ -70,29 +70,33 @@ export default {
     },
     methods:{
       send : function(){
-        /*
+        
         console.log(this.email);
         console.log(this.phone);
         console.log(this.describe);
         console.log(this.consent);
-        */
-        axios.post('/api/forms',
+        
+       if(this.email !=null && this.phone !=null && this.describe !=null && this.consent)
+       {
+
+         axios.post('/api/forms',
           {
-                email: this.email,
+            email: this.email,
                 phone: this.phone,
                 describe: this.describe,
                 consent: this.consent
           })
             .then(response => {
-              //console.log( response.data );
+              console.log( response );
               if(response.data)
-              this.success = true;
-            }//this.data = response.data.data
+                this.success = true;
+           
             ).catch(error => {
               this.errorMessage = error.message;
               console.error("There was an error!", error);
             });
-            ;
+            
+        }
       }
     }
 }

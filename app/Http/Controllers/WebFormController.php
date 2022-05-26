@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WebFormRequest;
 use App\Models\WebForm;
 use Illuminate\Http\Request;
 
@@ -27,10 +28,23 @@ class WebFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //public function store(WebFormRequest $request)
     public function store(Request $request)
     {
+       
+       // $validated = $request->validated();
+        /*
+        $validated = $request->validate([
+            'email' => 'required|unique:web_forms|max:255',
+            'phone' => 'required',
+            'describe' => 'required',
+        ]);*/
+
+         
+        /*$errors = $validator->all()->errors();
+        return $errors->toArray();
+        */
         $result = $request->only(["email","phone","describe"]);
-        
         $newForm =  WebForm::create([
             "email"=> $result["email"],
             "phone"=> $result["phone"],
