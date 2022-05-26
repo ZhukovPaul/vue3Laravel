@@ -16,6 +16,9 @@ class CreateWebFormsTable extends Migration
         Schema::create('web_forms', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string("email");
+            $table->string("phone");
+            $table->text("description");
         });
     }
 
