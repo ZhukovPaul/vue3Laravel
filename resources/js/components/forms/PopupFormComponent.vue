@@ -3,43 +3,51 @@
 
  
  
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Send message
+<button type="button" class="btn btn-default" @click="checkSend" data-bs-toggle="modal" data-bs-target="#feedback">
+  Связаться со мной
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="feedbackLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="feedbackLabel">Свзаться со мной</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div v-if="!success" class="modal-body">
+         
+           <p v-if="errors.length">
+              <b>Пожалуйста исправьте указанные ошибки:</b>
+              <ul>
+                <li v-for="error in errors">{{ error }}</li>
+              </ul>
+            </p>
+        <form @submit="checkForm"> 
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" v-model="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="inputEmail" class="form-label">Почта</label>
+                <input type="email" v-model="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Phone</label>
-                <input type="text" v-model="phone" class="form-control" id="exampleInputPassword1">
+                <label for="inputPhone" class="form-label">Номер телефона</label>
+                <input type="text" placeholder="+7(___) ___-__-__" v-mask="'+7(###) ####-##-##'" v-model="phone" class="form-control" id="inputPhone">
               </div>
               <div class="mb-3">
-                <label for="inputDescription" class="form-label">More information</label>
+                <label for="inputDescription" class="form-label">Комментарий</label>
                 <textarea class="form-control" v-model="describe" id="inputDescription"></textarea>
               </div>
 
               <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" v-model="consent" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Consent to the data private policy</label>
+                <input type="checkbox" class="form-check-input" v-model="consent" id="policy">
+                <label class="form-check-label" for="exampleCheck1">Политика конфиденциальности</label>
               </div>
-              <button type="button" @click="send" class="btn btn-primary">Submit</button>
-             
+              <button type="submit"  class="btn btn-primary">Отправить</button>
+             </form>
       </div>
       <div v-else class="modal-body">
         
         <div class="alert alert-secondary" role="alert">
-           Message was send
+           Спасибо! Ваше сообщение было отправлено
         </div>
       </div>
       <div class="modal-footer">
@@ -54,9 +62,7 @@
 </template>
 
 <script>
-import Axios from 'axios';
-
-export default {
+ export default {
     name : "PopupFormComponent",
     props : ["class"],
      data() {
@@ -65,17 +71,37 @@ export default {
           phone: null,
           describe :null,
           consent : true,
-          success : false
+          success : false,
+          errors : []
         };
     },
     methods:{
+      checkSend : function(){
+        console.log("d");
+        this.succes =  false
+      },
+      checkForm : function(e){
+          
+          if (this.email && this.phone && this.describe) {
+            e.preventDefault();
+            this.send();
+            
+          }
+          this.errors = [];
+          if(!this.email){
+            this.errors.push("Требуется указать Email");
+          }
+           if(!this.phone){
+            this.errors.push("Требуется указать Телефон");
+          }  
+          if(!this.describe){
+            this.errors.push("Требуется указать Комментарий");
+          }
+           e.preventDefault();
+
+      },
       send : function(){
-        /*
-        console.log(this.email);
-        console.log(this.phone);
-        console.log(this.describe);
-        console.log(this.consent);
-        */
+               
         axios.post('/api/forms',
           {
                 email: this.email,
@@ -84,12 +110,10 @@ export default {
                 consent: this.consent
           })
             .then(response => {
-              //console.log( response.data );
               if(response.data)
-              this.success = true;
-            }//this.data = response.data.data
-            ).catch(error => {
-              this.errorMessage = error.message;
+                this.success = true;
+            }).catch(error => {
+             
               console.error("There was an error!", error);
             });
             ;
