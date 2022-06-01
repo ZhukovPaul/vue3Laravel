@@ -81,11 +81,10 @@
         this.succes =  false
       },
       checkForm : function(e){
-          
-          if (this.email && this.phone && this.describe) {
-            e.preventDefault();
+          e.preventDefault();
+
+          if (this.email && this.phone && this.describe) {  
             this.send();
-            
           }
           this.errors = [];
           if(!this.email){
@@ -112,6 +111,12 @@
             .then(response => {
               if(response.data)
                 this.success = true;
+                setTimeout(()=>{
+                  this.email = null;
+                  this.phone = null;
+                  this.describe = null;
+                  this.success = false;
+                  },5000)
             }).catch(error => {
              
               console.error("There was an error!", error);
