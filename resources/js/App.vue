@@ -15,16 +15,16 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <router-link to="/" class="nav-link ">Home</router-link>
+                <router-link to="/" class="nav-link ">Главная</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/about" class="nav-link">About</router-link>
+                <router-link to="/about" class="nav-link">Обо мне</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/news" class="nav-link" >News</router-link>
+              <router-link to="/news" class="nav-link" >Новости</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link" >Dashboard</router-link>
+                <router-link to="/dashboard" class="nav-link" >Статьи</router-link>
             </li>
           </ul>
            <popup-form-component class="d-flex" ></popup-form-component> 
