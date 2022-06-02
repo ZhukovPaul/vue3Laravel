@@ -100,28 +100,25 @@
 
       },
       send : function(){
-               
-        axios.post('/api/forms',
-          {
-                email: this.email,
+ 
+        axios.post('/api/forms',{
+            email: this.email,
                 phone: this.phone,
                 describe: this.describe,
                 consent: this.consent
-          })
-            .then(response => {
-              if(response.data)
+          }).then(response => {
+              if(response.data) 
                 this.success = true;
-                setTimeout(()=>{
+              
+              setTimeout(()=>{
                   this.email = null;
                   this.phone = null;
                   this.describe = null;
                   this.success = false;
                   },5000)
-            }).catch(error => {
-             
-              console.error("There was an error!", error);
             });
-            ;
+            
+        }
       }
     }
 }
