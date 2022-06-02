@@ -6,6 +6,9 @@
 
  import {createApp} from 'vue'
  import { createStore } from 'vuex'
+ import { VueMaskDirective } from 'v-mask';
+  
+
 
  require('./bootstrap')
  import App from './App.vue'
@@ -30,6 +33,13 @@ const store = createStore({
    
 });
 
+//include v-mask
+const vMaskV2 = VueMaskDirective;
+const vMaskV3 = {
+  beforeMount: vMaskV2.bind,
+  updated: vMaskV2.componentUpdated,
+  unmounted: vMaskV2.unbind
+};
 
 
  const app = createApp(App)
@@ -37,9 +47,11 @@ const store = createStore({
  
  app.use(router)
  app.use(store);
+ app.directive('mask', vMaskV3);
+ 
 
  var vm = app.mount('#app');
-
+ 
  store.commit('increment'); 
  console.log(store.state.count) 
 
