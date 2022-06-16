@@ -77,15 +77,14 @@
     },
     methods:{
       checkSend : function(){
-        console.log("d");
+      
         this.succes =  false
       },
       checkForm : function(e){
-          
-          if (this.email && this.phone && this.describe) {
-            e.preventDefault();
+          e.preventDefault();
+
+          if (this.email && this.phone && this.describe) {  
             this.send();
-            
           }
           this.errors = [];
           if(!this.email){
@@ -101,23 +100,26 @@
 
       },
       send : function(){
-               
-        axios.post('/api/forms',
-          {
-                email: this.email,
+ 
+        axios.post('/api/forms',{
+            email: this.email,
                 phone: this.phone,
                 describe: this.describe,
                 consent: this.consent
-          })
-            .then(response => {
-              if(response.data)
+          }).then(response => {
+              if(response.data) 
                 this.success = true;
-            }).catch(error => {
-             
-              console.error("There was an error!", error);
+              
+              setTimeout(()=>{
+                  this.email = null;
+                  this.phone = null;
+                  this.describe = null;
+                  this.success = false;
+                  },5000)
             });
-            ;
+            
+        }
       }
     }
-}
+ 
 </script> 

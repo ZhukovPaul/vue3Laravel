@@ -22,13 +22,15 @@ class WebFormRequest extends FormRequest
      * @return array
      */
     public function rules()
-    { 
+ 
+    {
         return [
-            "email"=> "required",
-            "phone"=> "required",
-            "description"=> "required",
+            'email' => 'required|unique:web_forms|max:255',
+            'phone' => 'required',
+            'describe' => 'required',
         ];
     }
+ 
 
     public function messages()
     {
@@ -38,4 +40,5 @@ class WebFormRequest extends FormRequest
             "description.required"=> "Can't be empty",
         ];
     } 
+ 
 }
