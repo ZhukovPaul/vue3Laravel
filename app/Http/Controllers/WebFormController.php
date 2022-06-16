@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FormSended;
 use App\Http\Requests\WebFormRequest;
 use App\Models\WebForm;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event as FacadesEvent;
 
 class WebFormController extends Controller
 {
@@ -15,11 +18,13 @@ class WebFormController extends Controller
      */
     public function index()
     {
-        $newForm =  WebForm::create([
+        /*$newForm =  WebForm::create([
             "email"=> "email",
             "phone"=> "phone",
             "description"=> "describe",
-        ]);
+        ]);*/
+        //return WebForm::all()->toArray();
+         
     }
 
     /**
@@ -32,28 +37,18 @@ class WebFormController extends Controller
     public function store(Request $request)
     {
        
-       // $validated = $request->validated();
-        /*
-        $validated = $request->validate([
-            'email' => 'required|unique:web_forms|max:255',
-            'phone' => 'required',
-            'describe' => 'required',
-        ]);*/
-
-         
-        /*$errors = $validator->all()->errors();
-        return $errors->toArray();
-        */
         $result = $request->only(["email","phone","describe"]);
-        $newForm =  WebForm::create([
+        $filledForm =  WebForm::create([
             "email"=> $result["email"],
             "phone"=> $result["phone"],
             "description"=> $result["describe"],
         ]);
-        if($newForm->id>0)
+
+        FormSended::dispatchIf(($filledForm->id>0), $filledForm);
+        
+        if($filledForm->id>0)
             return true;
-        //
-        //dd( $request );
+    
         return $request->toArray();
     }
 

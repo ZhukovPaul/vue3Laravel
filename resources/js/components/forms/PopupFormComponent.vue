@@ -77,7 +77,7 @@
     },
     methods:{
       checkSend : function(){
-        console.log("d");
+      
         this.succes =  false
       },
       checkForm : function(e){
