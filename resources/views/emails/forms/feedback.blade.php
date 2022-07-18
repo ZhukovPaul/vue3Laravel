@@ -1,5 +1,6 @@
 <div>
-    Email: {{ $webform->email }}
-    Phone: {{ $webform->phone }}
-    Description: {{ $webform->description }}
+You have one more email from website<br>
+    Email: {{ $webform->email }}<br>
+    Phone: {{ $webform->phone }}<br>
+    Description: {{ $webform->description }}<br>
 </div>
